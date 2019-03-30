@@ -1,0 +1,183 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Panel extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper("tokencontrole_helper");
+        TokenControle();
+
+        $this->load->view("PanelHeader");
+        $this->load->view("PanelSideBar");
+        $this->load->view("PanelContent");
+    }
+
+    public function index(){
+        
+        if(!$this->uri->segment(3)){
+            $this->defaultPanel();
+        }
+    }
+
+    private function defaultPanel(){
+
+        $this->load->library('general');
+        $userId = $this->session->userdata('id');
+        $this->load->model('DefaultModel');
+        $numEgineers = $this->DefaultModel->GetEngineersAsArray($userId)->num_rows();
+
+        $date = date('Y-m-d');
+        $numAppointments = $this->DefaultModel->GetAppointmentsArray($userId,$date)->num_rows();
+        $menuData = Array(
+            'content'=> $this->general->GeneralData($numEgineers,$numAppointments),
+            'title' => 'Genel Bakış'
+        );
+        $this->load->view("PanelDefault",$menuData);
+        $this->load->view("PanelFooter");
+    }
+
+    public function engineers(){
+
+        $this->load->library('engineers');
+        $engineers = $this->uri->segment(3);
+        switch($engineers){
+            case 'create':
+                $this->load->model('EngineerModel');
+                $result = $this->EngineerModel->GetUsersAsArray();
+                $menuData = Array(
+                    'content'=> $this->engineers->CreateEnginnerFrom($result),
+                    'title' => 'Yeni Mühendis Oluştur'
+                );
+            break;
+        }
+
+        $this->load->view("PanelMain",$menuData);
+        $this->load->view("PanelFooter");
+    }
+
+    public function users(){
+
+        $this->load->library('users');
+        $users = $this->uri->segment(3);
+        switch($users){
+            case 'create':
+                if($this->session->userdata("login") && $this->session->userdata("auth") > 0)
+                {
+                    $menuData = Array(
+                        'content' => $this->users->CreateUserFrom(),
+                        'title' => 'Yeni Randevucu Oluştur'
+                    );
+                }else{
+                    $menuData = Array(
+                        'content' => 'BU ALANA ULAŞMAK İÇİN YETKİNİZ YOK.',
+                        'title' => 'YETKİ'
+                    );
+                }
+                break;
+            default:
+                $menuData = Array(
+                    'content'=> $this->users->index(),
+                    'title' => 'Randevucular'
+                );
+                break;
+        }
+
+        $this->load->view("PanelMain",$menuData);
+        $this->load->view("PanelFooter");
+    }
+
+    public function companies(){
+
+        $this->load->library('companies');
+        $companies = $this->uri->segment(3);
+        switch($companies){
+            case 'create':
+                $this->load->model('CompanyModel');
+                $result = $this->CompanyModel->GetUsersAsArray();
+                $menuData = Array(
+                    'content'=> $this->companies->CreateCompanyFrom($result),
+                    'title' => 'Yeni Firma Oluştur'
+                );
+                break;
+        }
+
+        $this->load->view("PanelMain",$menuData);
+        $this->load->view("PanelFooter");
+    }
+
+    public function appointments(){
+
+        $userId = $this->session->userdata('id');
+        $this->load->library('appointments');
+        $appointments = $this->uri->segment(3);
+        switch($appointments){
+            case 'create':
+                $this->load->model('AppointmentModel');
+                $userResult = $this->AppointmentModel->GetEngineersAsArray($userId);
+                $companyResult = $this->AppointmentModel->GetCompaniesAsArray($userId);
+                $menuData = Array(
+                    'content'=> $this->appointments->CreateAppointmentForm($userResult,$companyResult),
+                    'title' => 'Yeni Randevu Oluştur'
+                );
+            break;
+
+            case 'page':
+                if(empty($this->uri->segment(4))){
+                    $page = 1;
+                }else{
+                    $page = strip_tags(trim($this->uri->segment(4)));
+                }
+                
+                $limit = 5;
+                $date = date('Y-m-d');
+                $this->load->model('AppointmentModel');
+                $appointmentfind = strip_tags(trim($this->input->get('appointmentfind')));
+
+                if(!isset($appointmentfind))
+                    $appointmentfind = "";
+
+                
+                $num = $this->AppointmentModel->GetAppointmentEngineer($userId,$date,$page,$appointmentfind)[1]; 
+                $maxPage = ceil($num / $limit);
+                if($page > $maxPage)
+                    $page = $maxPage;
+                
+                if($page < 1)
+                    $page = 1;
+
+                $get = $this->AppointmentModel->GetAppointmentEngineer($userId,$date,$page,$appointmentfind);
+
+                $menuData = Array(
+                    'content'=> $this->appointments->DefaultAppointments($get,$maxPage,$page,$appointmentfind),
+                    'title' => 'Randevular'
+                );
+
+            break;
+
+            default:
+                $limit = 5;
+                $date = date('Y-m-d');
+                $this->load->model('AppointmentModel');
+                $appointmentfind = strip_tags(trim($this->input->get('appointmentfind')));
+                $page = 1;  
+                if(!isset($appointmentfind))
+                    $appointmentfind = "";
+
+                $get = $this->AppointmentModel->GetAppointmentEngineer($userId,$date,$page,$appointmentfind);
+                $num = $get[1];
+                $maxPage = ceil($num / $limit);
+                $menuData = Array(
+                    'content'=> $this->appointments->DefaultAppointments($get,$maxPage,$page,$appointmentfind),
+                    'title' => 'Randevular'
+                );
+            break;
+        }
+
+        $this->load->view("PanelMain",$menuData);
+        $this->load->view("PanelFooter");
+    }
+
+    
+}
