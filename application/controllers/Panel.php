@@ -39,7 +39,9 @@ class Panel extends CI_Controller
     }
 
     public function engineers(){
-
+        
+    if($this->session->userdata("login") && $this->session->userdata("auth") > 0)
+    {
         $this->load->library('engineers');
         $engineers = $this->uri->segment(3);
         switch($engineers){
@@ -52,6 +54,12 @@ class Panel extends CI_Controller
                 );
             break;
         }
+    }else{
+        $menuData = Array(
+            'content' => 'BU ALANA ULAŞMAK İÇİN YETKİNİZ YOK.',
+            'title' => 'YETKİ'
+        );
+    }
 
         $this->load->view("PanelMain",$menuData);
         $this->load->view("PanelFooter");
@@ -59,22 +67,16 @@ class Panel extends CI_Controller
 
     public function users(){
 
+    if($this->session->userdata("login") && $this->session->userdata("auth") > 0)
+    {
         $this->load->library('users');
         $users = $this->uri->segment(3);
         switch($users){
             case 'create':
-                if($this->session->userdata("login") && $this->session->userdata("auth") > 0)
-                {
                     $menuData = Array(
                         'content' => $this->users->CreateUserFrom(),
                         'title' => 'Yeni Randevucu Oluştur'
                     );
-                }else{
-                    $menuData = Array(
-                        'content' => 'BU ALANA ULAŞMAK İÇİN YETKİNİZ YOK.',
-                        'title' => 'YETKİ'
-                    );
-                }
                 break;
             default:
                 $menuData = Array(
@@ -83,6 +85,12 @@ class Panel extends CI_Controller
                 );
                 break;
         }
+    }else{
+            $menuData = Array(
+                'content' => 'BU ALANA ULAŞMAK İÇİN YETKİNİZ YOK.',
+                'title' => 'YETKİ'
+            );
+    }
 
         $this->load->view("PanelMain",$menuData);
         $this->load->view("PanelFooter");
@@ -90,6 +98,8 @@ class Panel extends CI_Controller
 
     public function companies(){
 
+    if($this->session->userdata("login") && $this->session->userdata("auth") > 0)
+    {
         $this->load->library('companies');
         $companies = $this->uri->segment(3);
         switch($companies){
@@ -102,6 +112,12 @@ class Panel extends CI_Controller
                 );
                 break;
         }
+    }else{
+        $menuData = Array(
+            'content' => 'BU ALANA ULAŞMAK İÇİN YETKİNİZ YOK.',
+            'title' => 'YETKİ'
+        );
+    }
 
         $this->load->view("PanelMain",$menuData);
         $this->load->view("PanelFooter");

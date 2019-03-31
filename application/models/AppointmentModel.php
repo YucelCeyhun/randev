@@ -90,6 +90,32 @@ class AppointmentModel extends CI_Model
 
       $get =$this->db->where($stat)->get('appointments')->num_rows();
       return $get;
-   } 
+   }
+   
+   public function CheckAppointment($elementId,$userId){
+      $stat = Array(
+         'id' => $elementId,
+         'userId' => $userId
+      );
+      $num = $this->db->where($stat)->get('appointments')->num_rows();
+      return $num;
+   }
+
+   public function DeleteAppointment($elementId,$userId){
+      $stat = Array(
+         'id' => $elementId,
+         'userId' => $userId
+      );
+      $del = $this->db->where($stat)->delete('appointments');
+      return $del;
+   }
+
+   public function DeleteAppointmentForAdmin($elementId){
+      $stat = Array(
+         'id' => $elementId
+      );
+      $del = $this->db->where($stat)->delete('appointments');
+      return $del;
+   }
 
 }

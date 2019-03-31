@@ -4,6 +4,12 @@ $.Redirect = function (urlDirect) {
     }, 2000);
 }
 
+$.Reload = function (urlDirect) {
+    setTimeout(function () {
+        window.location.reload();
+    }, 2000);
+}
+
 $.InputEmtypControl = function (inputArray) {
     var returnVal = true;
     inputArray.some(function (val) {
