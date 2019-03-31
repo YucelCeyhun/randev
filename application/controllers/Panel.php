@@ -126,10 +126,10 @@ class Panel extends CI_Controller
     public function appointments(){
 
         $userId = $this->session->userdata('id');
-        $this->load->library('appointments');
         $appointments = $this->uri->segment(3);
         switch($appointments){
             case 'create':
+                $this->load->library('appointments');
                 $this->load->model('AppointmentModel');
                 $userResult = $this->AppointmentModel->GetEngineersAsArray($userId);
                 $companyResult = $this->AppointmentModel->GetCompaniesAsArray($userId);
@@ -148,6 +148,7 @@ class Panel extends CI_Controller
                 
                 $limit = 5;
                 $date = date('Y-m-d');
+                $this->load->library('appointmentslist');
                 $this->load->model('AppointmentModel');
                 $appointmentfind = strip_tags(trim($this->input->get('appointmentfind')));
 
@@ -166,8 +167,18 @@ class Panel extends CI_Controller
                 $get = $this->AppointmentModel->GetAppointmentEngineer($userId,$date,$page,$appointmentfind);
 
                 $menuData = Array(
-                    'content'=> $this->appointments->DefaultAppointments($get,$maxPage,$page,$appointmentfind),
+                    'content'=> $this->appointmentslist->DefaultAppointments($get,$maxPage,$page,$appointmentfind),
                     'title' => 'Randevular'
+                );
+
+            break;
+
+            case 'routelist':
+
+                $this->load->library('appointmentsroutelist');
+                $menuData = Array(
+                    'content'=> $this->appointmentsroutelist->RouteList(),
+                    'title' => 'Mühendisin Randevu Güzergahı'
                 );
 
             break;
@@ -175,6 +186,7 @@ class Panel extends CI_Controller
             default:
                 $limit = 5;
                 $date = date('Y-m-d');
+                $this->load->library('appointmentslist');
                 $this->load->model('AppointmentModel');
                 $appointmentfind = strip_tags(trim($this->input->get('appointmentfind')));
                 $page = 1;  
@@ -185,7 +197,7 @@ class Panel extends CI_Controller
                 $num = $get[1];
                 $maxPage = ceil($num / $limit);
                 $menuData = Array(
-                    'content'=> $this->appointments->DefaultAppointments($get,$maxPage,$page,$appointmentfind),
+                    'content'=> $this->appointmentslist->DefaultAppointments($get,$maxPage,$page,$appointmentfind),
                     'title' => 'Randevular'
                 );
             break;
