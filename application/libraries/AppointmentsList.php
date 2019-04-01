@@ -10,7 +10,7 @@ class AppointmentsList
         <form class="'.base_url("panel/appointments/page/").'" method="get" action="'.base_url("panel/appointments/page/").'">
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <span class="input-group-text fas fa-search"></span>
                 </div>
                 <input type="text" class="form-control mr-1" id="appointmentfind" name="appointmentfind" placeholder="Mühendis veya Bina Ara" autocomplete="off">
                 <button type="submit" class="btn btn-primary" id="adressBtn">Ara</button>
@@ -19,7 +19,7 @@ class AppointmentsList
         </form>
         <div class="accordion" id="appointments-accordion">'
         .$val.
-        '</div>'.$pagination;
+        '</div></div>'.$pagination;
     }
 
     private function GetAllAppointmentsForUser($get){

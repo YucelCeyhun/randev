@@ -174,10 +174,11 @@ class Panel extends CI_Controller
             break;
 
             case 'routelist':
-
                 $this->load->library('appointmentsroutelist');
+                $this->load->model('AppointmentModel');
+                $engineers = $this->AppointmentModel->GetEngineersAsArray($userId);
                 $menuData = Array(
-                    'content'=> $this->appointmentsroutelist->RouteList(),
+                    'content'=> $this->appointmentsroutelist->RouteList($engineers),
                     'title' => 'Mühendisin Randevu Güzergahı'
                 );
 

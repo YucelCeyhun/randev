@@ -327,11 +327,8 @@ body{
     margin-bottom:20px;
 }
 
-.appointment-list .input-group span{
+.appointment-list .input-group span.fa-search{
     background:#ffffff;
     border-right:0;
-}
-
-.appointment-list i.fa-search{
     color:#dddddd;
 }

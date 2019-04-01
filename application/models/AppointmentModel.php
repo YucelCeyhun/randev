@@ -118,4 +118,19 @@ class AppointmentModel extends CI_Model
       return $del;
    }
 
+   public function GetAppointmentEngineerWithId($userId,$date,$engineers){
+
+      $stat = Array(
+         'appointments.userId' => $userId,
+         'appointments.date' => $date,
+         'appointments.engineerId' => $engineers
+      );
+
+      $get = $this->db->order_by('appointments.dateSql','ASC')->join('appointments','appointments.engineerId = engineers.id')->where($stat)->get('engineers');
+
+
+      return $get;
+
+     }
+
 }

@@ -55,18 +55,18 @@ class AppointmentSelectAjax extends CI_Controller
                 $userId = $this->session->userdata('id');
                 $this->load->Model('AppointmentModel');
                 $resutsEngineers = $this->AppointmentModel->GetEngineersAsArray($userId);
-                $this->load->library('applist');
+                $this->load->library('appointmentutilities');
                 $engineersDist = $this->SortForHomeDistance($resutsEngineers, $destLatLng);
-                $colHome = $this->applist->EngineersHomeDistance($engineersDist);
+                $colHome = $this->appointmentutilities->EngineersHomeDistance($engineersDist);
 
                 $engineersQuantity = $this->SortForQuantity($userId,$datepicker,$resutsEngineers);
-                $colQauntity=$this->applist->EngineersQuantities($engineersQuantity,$total);
+                $colQauntity=$this->appointmentutilities->EngineersQuantities($engineersQuantity,$total);
 
                 $engineerNearRoute = $this->SortEngineerNearRoute($userId,$datepicker,$resutsEngineers,$destLatLng);
-                $colNearRoute = $this->applist->EngineersNearRoutes($engineerNearRoute,$datepicker);
+                $colNearRoute = $this->appointmentutilities->EngineersNearRoutes($engineerNearRoute,$datepicker);
 
                 $engineerQuantityExtra = $this->EngineerQantityExtra($userId, $datepicker, $resutsEngineers, $total);
-                $colQauntityExtra = $this->applist->EngineersQuantitiesEx($engineerQuantityExtra);
+                $colQauntityExtra = $this->appointmentutilities->EngineersQuantitiesEx($engineerQuantityExtra);
 
                 $returnedData = array(
                     'val' => 1,
