@@ -68,6 +68,9 @@ class AppointmentCreateAjax extends CI_Controller
                         'msg' => "Randevu Zaten Mevcut."
                     );
                 }else if($this->EngineerQantityControl($userId, $datepicker, $engineers, $total)){
+
+                   $homeDistance = $this->HomeDistance($engineers,$userId,$destLatLng);
+
                     $insertData = Array(
                         'userId' => $userId,
                         'companyId' => $companies,
@@ -78,6 +81,7 @@ class AppointmentCreateAjax extends CI_Controller
                         'district' => $district,
                         'lat' => $destLatLng[0],
                         'lng' => $destLatLng[1],
+                        'homeDistance' => $homeDistance,
                         'quantity' => $total,
                         'normalQuantity' => $controlen,
                         'secondQuantity' => $controlee,
@@ -146,6 +150,28 @@ class AppointmentCreateAjax extends CI_Controller
 
         return false;
 
+    }
+
+    private function GetJsonValue($Olat, $Olng, $Dlat, $Dlng)
+    {
+
+        $key = "AIzaSyB9Iu3jWUujPMl3IcNcE1b4sts6JJHkr0s";
+        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=" . $Olat . "," . $Olng . "&destinations=" . $Dlat . "," . $Dlng . "&key=" . $key . "&language=tr&region=tr";
+        $jsonVal = file_get_contents($url);
+        $val = json_decode($jsonVal);
+        $dist = $val->rows[0]->elements[0]->distance->text;
+        $resultDist = explode(" ", $dist);
+
+        return str_replace(",", ".", $resultDist[0]);
+    }
+
+    private function HomeDistance($engineers,$userId,$destLatLng)
+    {
+        $this->load->Model('AppointmentModel');
+        $engineer = $this->AppointmentModel->GetEngineerAsRow($engineers);
+
+        $dist = $this->GetJsonValue($engineer->lat, $engineer->lng, $destLatLng[0], $destLatLng[1]);
+        return $dist;
     }
 
     public function RowCheck($built,$dateNow){

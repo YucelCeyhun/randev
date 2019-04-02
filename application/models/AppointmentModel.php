@@ -7,6 +7,12 @@ class AppointmentModel extends CI_Model
        $result = $this->db->order_by('name','ASC')->where("userId",$userId)->get('engineers')->result();
         return $result;
     }
+    
+    public function GetEngineerAsRow($engineerId){
+      $row = $this->db->where("id",$engineerId)->get('engineers')->row();
+       return $row;
+   }
+
 
     public function GetCompaniesAsArray($userId){
         $result = $this->db->order_by('name','ASC')->where("userId",$userId)->get('companies')->result();
@@ -126,11 +132,14 @@ class AppointmentModel extends CI_Model
          'appointments.engineerId' => $engineers
       );
 
-      $get = $this->db->order_by('appointments.dateSql','ASC')->join('appointments','appointments.engineerId = engineers.id')->where($stat)->get('engineers');
+      //$get = $this->db->order_by('homeDistance','ASC')->where($stat)->get('appointments');
+
+      $get = $this->db->order_by('appointments.homeDistance','ASC')->join('appointments','appointments.companyId = companies.id')->where($stat)->get('companies');
 
 
       return $get;
 
      }
+
 
 }

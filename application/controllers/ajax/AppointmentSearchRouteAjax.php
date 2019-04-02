@@ -40,12 +40,15 @@ class AppointmentSearchRouteAjax extends CI_Controller
            
             
             $this->load->model("AppointmentModel");
-            $get = $this->AppointmentModel->GetAppointmentEngineerWithId($userId,$datepicker,$engineers);
-            $result = $get->result();
+            $getAppointments = $this->AppointmentModel->GetAppointmentEngineerWithId($userId,$datepicker,$engineers);
+            $appointmentsResult = $getAppointments->result();
+            $getEngineerRow = $this->AppointmentModel->GetEngineerAsRow($engineers);
 
             $returnedData = array(
                 'val' => 1,
-                'msg' => '<div id="map"></div>'
+                'msg' => '<div id="map"></div>',
+                'result' => $appointmentsResult,
+                'engineer' => $getEngineerRow
             );
             echo json_encode($returnedData);
 

@@ -2,7 +2,7 @@ $(function(){
   $.ajaxAction("#createBtn");
   $("#engineerBtn").click($.LoadData);
   $("#createBtn").click($.InsertData);
-  $.ajaxActionGif("#engineer-select","#createBtn");
+  $.ajaxActionGif("#engineer-select");
 })
 
 
