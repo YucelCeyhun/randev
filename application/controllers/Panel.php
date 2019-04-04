@@ -177,11 +177,23 @@ class Panel extends CI_Controller
                 $this->load->library('appointmentsroutelist');
                 $this->load->model('AppointmentModel');
                 $engineers = $this->AppointmentModel->GetEngineersAsArray($userId);
+                
                 $menuData = Array(
                     'content'=> $this->appointmentsroutelist->RouteList($engineers),
                     'title' => 'Mühendisin Randevu Güzergahı'
                 );
 
+            break;
+
+            case 'exlist':
+                $this->load->library('appointmentsexcellist');
+                $this->load->model('AppointmentModel');
+                $engineers = $this->AppointmentModel->GetEngineersAsArray($userId);
+
+                $menuData = Array(
+                    'content'=> $this->appointmentsexcellist->RouteExList($engineers),
+                    'title' => 'Randevu Excel Çıktısı'
+                );
             break;
 
             default:

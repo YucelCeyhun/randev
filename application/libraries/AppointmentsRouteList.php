@@ -10,7 +10,6 @@ class AppointmentsRouteList
         
         return '<div id ="appointment-routes">
         <div class="appointment-list">
-            <form class="'.base_url("panel/appointments/page/").'" method="get" action="'.base_url("panel/appointments/page/").'">
                 <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text far fa-calendar-alt" id="basic-addon1"></span>
@@ -24,7 +23,6 @@ class AppointmentsRouteList
                     <button type="button" class="btn btn-primary" id="searchButton">Ara</button>
                     </div>
                 </div>
-            </form>
         </div>
             <div id="appointment-route-result">
             </div>

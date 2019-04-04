@@ -11,8 +11,8 @@
              </ul>
          </li>
          <li>
-             <a href="#engineer" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-map-marked"></i>Mühendis İşlemleri</a>
-             <ul class="collapse list-unstyled" id="engineer">
+             <a href="#engineer" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><i class="fas fa-map-marked"></i>Mühendis İşlemleri</a>
+             <ul class="collapse list-unstyled show" id="engineer">
                  <li><a href="<?php echo base_url("panel/engineers/create");?>">Yeni Mühendis Oluştur</a></li>
                  <li><a href="#">hm2</a></li>
                  <li><a href="#">hm3</a></li>

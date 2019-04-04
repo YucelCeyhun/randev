@@ -8,7 +8,7 @@ class AppointmentModel extends CI_Model
         return $result;
     }
     
-    public function GetEngineerAsRow($engineerId){
+   public function GetEngineerAsRow($engineerId){
       $row = $this->db->where("id",$engineerId)->get('engineers')->row();
        return $row;
    }
@@ -140,6 +140,43 @@ class AppointmentModel extends CI_Model
       return $get;
 
      }
+
+     public function GetAppointmentForExcelEx($userId,$dateFrom,$dateTo,$engineers){
+
+      $stat = Array(
+         'appointments.userId' => $userId,
+         'appointments.dateSql >=' => $dateFrom,
+         'appointments.dateSql <=' => $dateTo,
+         'appointments.engineerId' => $engineers
+      );
+
+      $result = $this->db->order_by('appointments.engineerId','ASC')->join('appointments','appointments.companyId = companies.id')->where($stat)->get('companies')->result();
+
+      return $result;
+
+     }
+
+     
+     public function GetAppointmentForExcel($userId,$dateFrom,$dateTo){
+
+      $stat = Array(
+         'appointments.userId' => $userId,
+         'appointments.dateSql >=' => $dateFrom,
+         'appointments.dateSql <=' => $dateTo
+      );
+
+      $result = $this->db->order_by('appointments.engineerId','ASC')->join('appointments','appointments.companyId = companies.id')->where($stat)->get('companies')->result();
+
+
+      return $result;
+
+     }
+
+   public function GetEngineerName($engineerId){
+      $row = $this->db->where("id",$engineerId)->get('engineers')->row();
+      $name = $row->name;
+      return $name;
+   }
 
 
 }

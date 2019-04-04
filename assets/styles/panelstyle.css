@@ -353,3 +353,10 @@ body{
     width:200px;
     text-align:center;
 }
+
+.appointment-excel .card{
+    background:#f5f9fc;
+    border:1px solid rgba(0, 0, 0, 0.125);
+    margin-bottom:20px;
+    border-radius: 0;
+}
