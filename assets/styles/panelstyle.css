@@ -27,14 +27,31 @@ body{
     min-width: 250px;
     max-width: 250px;
     transition: margin 0.5s linear;
-    color: #fff;
+    color: #ffffff;
 }
+.sidebar-header .header-wrapper h4{
+    line-height: 48px;
+}
+
+.sidebar-header .header-wrapper a {
+    text-decoration: none;
+    color:#ffffff;
+}
+
 .sidebar-header{
     text-align: center;
     padding: 20px;
 }
+
+.sidebar-header .head-brand{
+    margin-right: 10px;
+    background: url("http://localhost/assets/images/brand.png") no-repeat center center;
+    width: 48px;
+    height: 48px;
+}
+
 .slidebar-nav{
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .sidebar ul li a{
@@ -61,6 +78,11 @@ body{
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
+}
+
+.sidebar ul li ul a.active{
+   background-color: #47bac1;
+   color: #FFFFFF;
 }
 
 .root{
@@ -157,6 +179,10 @@ body{
     margin:0 15px 0 15px;
     color: #FFFFFF;
     font-size: 1.2rem;
+}
+
+.icofont-engineer{
+    font-size:1rem;
 }
 
 .btn-primary{

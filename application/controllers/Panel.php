@@ -9,8 +9,19 @@ class Panel extends CI_Controller
         $this->load->helper("tokencontrole_helper");
         TokenControle();
 
+        $menu = Array(
+            'menuParent' => "",
+            'menuChild' => ""
+        );
+
+        if($this->uri->segment(2))
+            $menu['menuParent'] = $this->uri->segment(2);
+            
+        if($this->uri->segment(3))
+            $menu['menuChild'] = $this->uri->segment(3);
+        
         $this->load->view("PanelHeader");
-        $this->load->view("PanelSideBar");
+        $this->load->view("PanelSideBar",$menu);
         $this->load->view("PanelContent");
     }
 
