@@ -23,7 +23,7 @@ $.LoadData = function(){
           };
           
           $.ajax({
-            url: "/ajax/appointmentselectajax/",
+            url: "/ajax/AppointmentSelectAjax/",
             type: "post",
             data: jdata,
             success: function (data) {

@@ -22,7 +22,7 @@ $.controlValues = function (username,password) {
     }else{
         
         $.ajax({
-            url:"/ajax/loginajax/",
+            url:"/ajax/LoginAjax/",
             type:"post",
             data:{username:username,password:password},
             success:function (data) {

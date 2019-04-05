@@ -68,15 +68,17 @@ class AppointmentModel extends CI_Model
          'appointments.userId' => $userId,
          'appointments.dateSql >=' => $date
       );
+      
+      $this->db->order_by('appointments.dateSql','ASC')->limit(5,(($page-1) * 5));
+      $this->db->where($stat);
+      $this->db->group_start();
+      $this->db->or_like('engineers.name',$appointmentfind);
+      $this->db->or_like('appointments.builtName',$appointmentfind);
+      $this->db->group_end();
+      $this->db->join('appointments','appointments.engineerId = engineers.id');
+      $get = $this->db->get('engineers');
 
-      $get = $this->db->order_by('appointments.dateSql','ASC')->limit(5,(($page-1) * 5))
-      ->or_like('engineers.name',$appointmentfind)
-      ->or_like('appointments.builtName',$appointmentfind)
-      ->join('appointments','appointments.engineerId = engineers.id')->where($stat)->get('engineers');
-
-      $num = $this->db->or_like('engineers.name',$appointmentfind)
-      ->or_like('appointments.builtName',$appointmentfind)
-      ->join('appointments','appointments.engineerId = engineers.id')->where($stat)->get('engineers')->num_rows();
+      $num = $get->num_rows();
 
       return Array($get,$num);
 

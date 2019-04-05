@@ -23,7 +23,7 @@ $.createEngineer = function (name, address, tel, email, user) {
     var formInput = Array(name, address, tel);
     if ($.InputEmtypControl(formInput)) {
         $.ajax({
-            url: "/ajax/companycreateajax/",
+            url: "/ajax/CompanyCreateAjax/",
             type: "post",
             data: {
                 name: name.val(), address: address.val(), tel: tel.val(), email: email.val(), user: user.val()

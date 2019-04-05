@@ -1,0 +1,111 @@
+body,html{
+    height: 100% !important;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Open Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;
+    font-size: 0.9rem;
+    color: #495057;
+    text-align: left;
+    background: #f5f9fc;
+
+}
+
+#loading-screen{
+    background:url("http://localhost/assets/images/loading.gif") no-repeat center center fixed;
+    position: fixed;
+    opacity: 0.5;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+}
+
+.root{
+    height: 100%;
+}
+
+.wrapper{
+    display: flex;
+    width: 100%;
+}
+
+.content{
+    min-height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+}
+
+.content-main{
+    border:1px solid #dddddd;
+    min-width: 350px;
+    min-height: 500px;
+    background: #ffffff;
+    padding:10px;
+    margin:40px;
+}
+
+.content-default{
+    min-width: 350px;
+    min-height: 500px;
+    padding:10px;
+    margin:40px;
+    background: none;
+    border: none;
+}
+
+.content-default .row{
+    padding-bottom: 30px;
+}
+
+.content-default .card-header{
+    background: #ffffff;
+    color:#000000;
+    font-weight: 600;
+}
+
+.content-main .card-header{
+    background: #ffffff;
+    padding:15px 10px;
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 25px;
+}
+
+.navbar{
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid #dddddd;
+    padding: 15px 20px;
+}
+
+.collapse-icons{
+    width: 86px;
+ }
+ 
+ .home:hover{
+     color: #ffffff !important;
+ }
+ 
+ .home {
+     color:#47bac1 !important;
+     border-color: #47bac1;
+ }
+ 
+  .top-nav{
+     margin-left: auto;
+     margin-right: 50px;
+ }
+ 
+ .dropdown-menu{
+     min-width: 7rem;
+ }
+ 
+ .dropdown-menu > .dropdown-link{
+     text-align: center;
+ }
+ 
+ .dropdown-menu > .dropdown-link:hover{
+     background: none;
+ } 

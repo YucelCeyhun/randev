@@ -11,7 +11,11 @@ class Login extends CI_Controller
 
     public function index(){
 
-        $this->load->view("LoginView");
+        if($this->session->userdata("login")){
+            redirect(base_url('panel'),'refresh');
+        }else{
+            $this->load->view("LoginView");
+        }
     }
 
 }

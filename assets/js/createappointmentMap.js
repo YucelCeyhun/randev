@@ -45,7 +45,7 @@ $.MarkToClick = function MarkToClick() {
       };
 
       $.ajax({
-        url: "/ajax/appointmentformajax/",
+        url: "/ajax/AppointmentFormAjax/",
         type: "post",
         data: jdata,
         success: function (data) {

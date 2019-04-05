@@ -22,7 +22,7 @@ $.createEngineer = function (name, tel, email, user, mapAddress, mapLatLng) {
     if ($.InputEmtypControl(formInput)) {
 
         $.ajax({
-            url: "/ajax/engineercreateajax/",
+            url: "/ajax/EngineerCreateAjax/",
             type: "post",
             data: {
                 name: name.val(), tel: tel.val(), email: email.val(), user: user.val(), mapAddress: mapAddress.val(), mapLatLng: mapLatLng.val()

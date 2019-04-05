@@ -9,6 +9,11 @@ class Panel extends CI_Controller
         $this->load->helper("tokencontrole_helper");
         TokenControle();
 
+        $username = $this->session->userdata('user');
+        $userData= Array(
+            'username' => $username
+        );
+
         $menu = Array(
             'menuParent' => "",
             'menuChild' => ""
@@ -22,7 +27,7 @@ class Panel extends CI_Controller
         
         $this->load->view("PanelHeader");
         $this->load->view("PanelSideBar",$menu);
-        $this->load->view("PanelContent");
+        $this->load->view("PanelContent",$userData);
     }
 
     public function index(){

@@ -1,7 +1,7 @@
  <nav class="sidebar">
      <div class="sidebar-header mt-5">
          <div class="header-wrapper">
-             <a class="d-flex" href="<?php echo base_url('panel');?>"><div class="head-brand" style="width:48px;height:48px;"></div><h4>Randev</h4></a>
+             <a class="d-flex" href="<?php echo base_url('panel');?>"><div class="head-brand"></div><h4>Randev</h4></a>
             </div>
      </div>
      <ul class="list-unstyled slidebar-nav">
@@ -10,7 +10,7 @@
              <ul class="collapse list-unstyled <?php echo $menuParent == "appointments" ? " show" : null ;?>" id="appointment">
                     <li><a href="<?php echo base_url("panel/appointments/create");?>" class="<?php echo $menuChild == "create" && $menuParent == "appointments" ? "active" : null ;?>">Randevu Oluştur Manuel</a></li>
                     <li><a href="<?php echo base_url("panel/appointments/createauto");?>" class="<?php echo $menuChild == "createauto" && $menuParent == "appointments" ? "active" : null ;?>">Randevu Oluştur Otomatik</a></li>
-                    <li><a href="<?php echo base_url("panel/appointments/");?>" class="<?php echo $menuChild == "" && $menuParent == "appointments" ? "active" : null ;?>">Randevuları Götüntüle</a></li>
+                    <li><a href="<?php echo base_url("panel/appointments/");?>" class="<?php echo ($menuChild == "" || $menuChild == "page") && $menuParent == "appointments" ? "active" : null ;?>">Randevuları Götüntüle</a></li>
                     <li><a href="<?php echo base_url("panel/appointments/routelist");?>" class="<?php echo $menuChild == "routelist" && $menuParent == "appointments" ? "active" : null ;?>">Randevu Rota Görüntle</a></li>
                     <li><a href="<?php echo base_url("panel/appointments/exlist");?>" class="<?php echo $menuChild == "exlist" && $menuParent == "appointments" ? "active" : null ;?>">Randevu Excel Oluştur</a></li>
              </ul>

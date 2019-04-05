@@ -24,7 +24,7 @@ $.controlValues = function (username, password, passwordRepeat, tel, email, comp
     var formInput = Array(username, password, passwordRepeat, tel, email);
     if ($.InputEmtypControl(formInput)) {
         $.ajax({
-            url: "/ajax/usercreateajax/",
+            url: "/ajax/UserCreateAjax/",
             type: "post",
             data: {
                 username: username.val(), password: password.val(), passwordRepeat: passwordRepeat.val(),
