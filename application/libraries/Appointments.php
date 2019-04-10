@@ -85,7 +85,6 @@ class Appointments
           </div>
         </div>
       </div>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9Iu3jWUujPMl3IcNcE1b4sts6JJHkr0s&callback=initMap"></script>
       <script type="text/javascript" src="' . base_url('assets/js/appointmentcontrol.js') . '"></script>
       <script type="text/javascript" src="' . base_url('assets/js/createappointmentMap.js') . '"></script>
       <script type="text/javascript" src="' . base_url('assets/js/createappointment.js') . '"></script>';

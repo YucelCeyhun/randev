@@ -8,6 +8,15 @@ $(function()
         $.controlValues(userName,password);
     })
 
+    $(document).on('keypress',function(e) {
+        if(e.which == 13) {
+
+        var userName = $("#name").val();
+        var password = $("#password").val();
+        $.controlValues(userName,password);
+        }
+    });
+
     $.ajaxAction("#loginBtn");
 });
 
@@ -56,3 +65,5 @@ $.ajaxAction = function(elementId){
     });
 
 }
+
+

@@ -111,3 +111,21 @@
     text-align:center;
     bottom:0.01rem;
 }
+
+#autocreate-progress{
+    position:relative;
+    background: #cccccc;
+    height: calc(1.5em + 0.75rem + 2px);
+}
+
+#autocreate-progress .progress-bar{
+    background: #47bac1;
+}
+
+#autocreate-progress span{
+    position:absolute;
+    width:100%;
+    text-align:center;
+    bottom:0.40rem;
+    font-size: 0.9rem;
+}

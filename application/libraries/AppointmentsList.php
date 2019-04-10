@@ -84,7 +84,6 @@ class AppointmentsList
                 </li>
             </ul>
         </nav>
-        </div>
         <script type="text/javascript" src="' . base_url('assets/js/appointmentlist.js') . '"></script>';
         }
 

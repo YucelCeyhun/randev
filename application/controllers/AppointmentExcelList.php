@@ -81,7 +81,7 @@ class AppointmentExcelList extends CI_Controller
             $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$i, $engineerName);
             $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B'.$i, $list->builtName);
             $objPHPExcel->setActiveSheetIndex(0)->setCellValue('C'.$i, $list->normalQuantity);
-            $objPHPExcel->setActiveSheetIndex(0)->setCellValue('D'.$i, $list->secondQuantity);
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue('D'.$i, ($list->secondQuantity * 2));
             $objPHPExcel->setActiveSheetIndex(0)->setCellValue('E'.$i, $list->address);
             $objPHPExcel->setActiveSheetIndex(0)->setCellValue('F'.$i, $list->district);
             $objPHPExcel->setActiveSheetIndex(0)->setCellValue('G'.$i, $list->name);

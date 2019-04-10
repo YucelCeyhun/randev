@@ -25,7 +25,7 @@ class Engineers
             </div>
             <div class="form-group">
                 <label for="email">E-Mail Adresi:</label>
-                <input type="email" class="form-control" id="email" placeholder="örnek@domain.com" name="email">
+                <input type="email" class="form-control" id="engineeremail" placeholder="örnek@domain.com" name="engineeremail">
             </div>
             <div class="form-group">
             <label for="users">Mühendisin Randevucusu(eğer varsa):</label>

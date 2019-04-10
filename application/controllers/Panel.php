@@ -155,6 +155,15 @@ class Panel extends CI_Controller
                 );
             break;
 
+            case 'createauto':
+                $this->load->library('appointmentscreateauto');
+                $menuData = Array(
+                    'content'=> $this->appointmentscreateauto->CreateAutoAppointment(),
+                    'title' => 'Otomatik Randevu Oluşturma'
+                );
+
+            break;
+
             case 'page':
                 if(empty($this->uri->segment(4))){
                     $page = 1;

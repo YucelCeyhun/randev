@@ -6,7 +6,7 @@ $(function () {
         var password = $("#password");
         var passwordRepeat = $("#password-repeat");
         var tel = $("#tel");
-        var email = $("#email");
+        var email = $("#useremail");
         var companies = $("#companies");
         var engineers = $("#engineers");
         $.controlValues(username, password, passwordRepeat, tel, email, companies, engineers);

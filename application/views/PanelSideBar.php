@@ -39,5 +39,17 @@
                  <li><a href="<?php echo base_url("panel/email/create");?>" class="<?php echo $menuChild == "create" && $menuParent == "email" ? "active" : null ;?>">Firmaya E-mail Gönder</a></li>
              </ul>
          </li>
+         <li>
+             <a href="#user" data-toggle="collapse" aria-expanded="<?php echo $menuParent == "users" ? "true" : "false" ;?>" class="dropdown-toggle"><i class="fas fa-user-tie mr-3"></i>Randevucu İşlemleri</a>
+             <ul class="collapse list-unstyled <?php echo $menuParent == "users" ? " show" : null ;?>" id="user">
+                 <li><a href="<?php echo base_url("panel/users/create");?>" class="<?php echo $menuChild == "create" && $menuParent == "users" ? "active" : null ;?>">Yeni Randevucu Oluştur</a></li>
+             </ul>
+         </li>
+         <li>
+             <a href="#settings" data-toggle="collapse" aria-expanded="<?php echo $menuParent == "email" ? "true" : "false" ;?>" class="dropdown-toggle"><i class="fas fa-cog mr-3"></i>Ayarlar</a>
+             <ul class="collapse list-unstyled <?php echo $menuParent == "email" ? " show" : null ;?>" id="settings">
+                 <li><a href="<?php echo base_url("panel/settings/createauto");?>" class="<?php echo $menuChild == "create" && $menuParent == "email" ? "active" : null ;?>">Randevu Oluşturma Ayarı</a></li>
+             </ul>
+         </li>
      </ul>
  </nav>

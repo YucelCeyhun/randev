@@ -17,6 +17,7 @@ $.InputEmtypControl = function (inputArray) {
             alertify.error("Gerekli alanları doldurunuz.");
             val.addClass("input-error");
             returnVal = false;
+            
             return true;
         }
     })

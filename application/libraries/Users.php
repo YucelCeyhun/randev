@@ -22,7 +22,7 @@ class Users
             </div>
             <div class="form-group">
                 <label for="email">E-Mail Adresi:</label>
-                <input type="email" class="form-control" id="email" placeholder="örnek@domain.com" name="email">
+                <input type="email" class="form-control" id="useremail" placeholder="örnek@domain.com" name="useremail">
             </div>
             <div class="form-group">
             <label for="companies">Randevucunun Firmaları(eğer varsa)(birden fazla seçim için control tuşunu kullanın):</label>
@@ -48,8 +48,5 @@ class Users
 
     }
 
-    public function index(){
-        return "aa";
-    }
 }
 ?>
